@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 1 - Métodos Numéricos Básicos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0f1e, #1a1a2e);
+      color: white;
+      padding: 40px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #8b5cf6;
+    }
+    p {
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+    pre {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+    code {
+      color: #10b981;
+      font-size: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .btn-pdf {
+      background: linear-gradient(45deg, #06b6d4, #3b82f6);
+      color: white;
+    }
+    .btn-pdf:hover {
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+      transform: translateY(-3px);
+    }
+    .btn-back {
+      background: rgba(255,255,255,0.1);
+      color: #94a3b8;
+      margin-right: 10px;
+    }
+    .btn-back:hover {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 Actividad 1: Analizador de Funciones Matemáticas</h1>
+  <p>
+    Este programa, desarrollado en Python con la librería Tkinter, permite ingresar una función matemática y analizar su estructura básica. El sistema identifica las variables presentes, cuenta la cantidad de operaciones y descompone la función en términos separados. Su propósito es facilitar la comprensión y el desglose de expresiones algebraicas dentro del curso de Programación Numérica.
+
+  </p>
+
+  <h2>Código en Python</h2>
+  <pre><code>
+# Ejemplo de código en Python para la Actividad 1
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+def analizar():
+    funcion = entrada.get()
+
+    if not funcion.strip():
+        messagebox.showwarning("Error", "Por favor ingresa una función .")
+        return
+
+    variables_encontradas = set()
+    cantidad_operaciones = 0
+    terminos = []
+
+    for i, caracter in enumerate(funcion):
+        if caracter.isalpha():
+            variables_encontradas.add(caracter)
+
+        elif caracter in "+-*/^":
+            cantidad_operaciones += 1
+
+        if i < len(funcion) - 1:
+            siguiente = funcion[i + 1]
+            if caracter.isdigit() and siguiente.isalpha():
+                cantidad_operaciones += 1
+            elif caracter.isalpha() and siguiente.isalpha():
+                cantidad_operaciones += 1
+
+    terminos = funcion.replace("-", "+-").split("+")
+
+    terminos = [t.strip() for t in terminos if t.strip()]
+
+    resultado.set(
+        f"Función ingresada: {funcion}\n"
+        f"Variables encontradas: {', '.join(sorted(variables_encontradas))}\n"
+        f"Cantidad de variables: {len(variables_encontradas)}\n"
+        f"Cantidad de operaciones: {cantidad_operaciones}\n"
+        f"Términos: {', '.join(terminos)}"
+    )
+
+# --- Ventana principal ---
+ventana = tk.Tk()
+ventana.title("Analizador de Funciones Matemáticas")
+ventana.geometry("500x350")
+ventana.configure(bg="#f4f6f7")
+
+# --- Estilos ---
+estilo = ttk.Style()
+estilo.configure("TButton", font=("Arial", 12), padding=6)
+estilo.configure("TLabel", font=("Arial", 12))
+
+# --- Título ---
+etiqueta_titulo = tk.Label(
+    ventana,
+    text="Analizador de Funciones",
+    font=("Arial", 16, "bold"),
+    bg="#f4f6f7",
+    fg="#2c3e50"
+)
+etiqueta_titulo.pack(pady=10)
+
+# --- Entrada ---
+entrada = ttk.Entry(ventana, font=("Consolas", 14))
+entrada.pack(pady=10, ipadx=20, ipady=5)
+
+# --- Botón ---
+boton_analizar = ttk.Button(ventana, text="Analizar", command=analizar)
+boton_analizar.pack(pady=10)
+
+# --- Resultado ---
+resultado = tk.StringVar()
+etiqueta_resultado = tk.Label(
+    ventana,
+    textvariable=resultado,
+    font=("Consolas", 12),
+    bg="#ecf0f1",
+    fg="#2c3e50",
+    relief="groove",
+    justify="left",
+    anchor="w"
+)
+etiqueta_resultado.pack(fill="both", expand=True, padx=20, pady=10)
+
+ventana.mainloop()
+  </code></pre>
+
+  <a href="tu-pdf.pdf" class="btn btn-pdf" target="_blank">📄 Ver PDF</a>
+  <a href="../index.html#actividades" class="btn btn-back">⬅ Volver</a>
+</body>
+</html>
