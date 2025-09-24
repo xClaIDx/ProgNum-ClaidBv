@@ -19,13 +19,11 @@ class GraficadoraTexto:
         return expr
     
     def agregar_funcion(self, expresion: str, simbolo: str):
-        """Agrega una función con un símbolo para graficarla"""
         expr_preparada = self.preparar_expresion(expresion)
         self.funciones.append((expr_preparada, simbolo))
     
     def graficar(self):
-        """Dibuja el plano cartesiano con las funciones"""
-        print("\n=== Gráfico en Plano Cartesiano (ASCII) ===\n")
+        print("\nGráfico en Plano Cartesiano \n")
         for y in range(self.ymax, self.ymin - 1, -1):
             linea = ""
             for x in range(self.xmin, self.xmax + 1):
