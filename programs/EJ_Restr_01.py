@@ -1,5 +1,5 @@
 class GraficadoraTexto:
-    def __init__(self, xmin=-20, xmax=20, ymin=-10, ymax=10):
+    def __init__(self, xmin=-1, xmax=20, ymin=-1, ymax=15):
         self.xmin = xmin
         self.xmax = xmax
         self.ymin = ymin
@@ -7,14 +7,14 @@ class GraficadoraTexto:
         self.funciones = []  
     
     def preparar_expresion(self, expr: str) -> str:
-        expr = expr.replace(" ", "")       # quitar espacios
-        expr = expr.replace("^", "**")     # potencia con ^
-        if expr.startswith("x"):           # caso si empieza con x
+        expr = expr.replace(" ", "")
+        expr = expr.replace("^", "**")
+        if expr.startswith("x"):
             expr = "1*" + expr
-        expr = expr.replace("-x", "-1*x")  # -x → -1*x
-        expr = expr.replace("+x", "+1*x")  # +x → +1*x
-        expr = expr.replace("x", "*x")     # 2x → 2*x
-        expr = expr.replace("**x", "*x")   # corregir posibles duplicados
+        expr = expr.replace("-x", "-1*x")
+        expr = expr.replace("+x", "+1*x")
+        expr = expr.replace("x", "*x")
+        expr = expr.replace("**x", "*x")
         return expr
     
     def agregar_funcion(self, expresion: str, simbolo: str):
@@ -22,42 +22,39 @@ class GraficadoraTexto:
         self.funciones.append((expr_preparada, simbolo))
     
     def graficar(self):
-        print("\nGráfico en Plano Cartesiano \n")
         for y in range(self.ymax, self.ymin - 1, -1):
             linea = ""
             for x in range(self.xmin, self.xmax + 1):
                 simbolo = " "
                 intersecciones = []
-                
                 for expr, simb in self.funciones:
                     try:
-                        y_eval = eval(expr, {"x": x})
-                        if abs(y - y_eval) < 0.5:  # tolerancia
+                        y_eval = eval(expr, {"x": x, "y": y})
+                        if abs(y - y_eval) < 0.5:
                             intersecciones.append(simb)
                     except:
                         pass
-                
                 if len(intersecciones) > 1:
-                    simbolo = "#"  #Cruce
+                    simbolo = "#"
                 elif len(intersecciones) == 1:
                     simbolo = intersecciones[0]
                 elif x == 0 and y == 0:
-                    simbolo = "+"  # origen
+                    simbolo = "+"
                 elif x == 0:
-                    simbolo = "|"  # eje Y
+                    simbolo = "|"
                 elif y == 0:
-                    simbolo = "-"  # eje X
-                
+                    simbolo = "-"
                 linea += simbolo
             print(linea)
 
 
+# EJERCICIO 1 - DOS ECUACIONES PRINCIPALES
 if __name__ == "__main__":
+    print("Ecuación 1: x = 5 (tiempo min Front)")
+    print("Ecuación 2: y = 15 - x ( tiempo total)")
+    print()
+    
     graf = GraficadoraTexto()
-f1 = input("Ingrese la primera función : ")
-f2 = input("Ingrese la segunda función : ")
-
-graf.agregar_funcion(f1, "*")
-graf.agregar_funcion(f2, "@")
-
-graf.graficar()
+    graf.agregar_funcion("(x==5)*y", "*")   # Ecuación 1: x = 5
+    graf.agregar_funcion("15-x", "@")        # Ecuación 2: y = 15 - x
+    graf.graficar()
