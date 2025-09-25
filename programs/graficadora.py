@@ -7,7 +7,6 @@ class GraficadoraTexto:
         self.funciones = []  
     
     def preparar_expresion(self, expr: str) -> str:
-        """Convierte la expresión escrita en forma amigable a Python"""
         expr = expr.replace(" ", "")       # quitar espacios
         expr = expr.replace("^", "**")     # potencia con ^
         if expr.startswith("x"):           # caso si empieza con x
@@ -55,8 +54,7 @@ class GraficadoraTexto:
 
 if __name__ == "__main__":
     graf = GraficadoraTexto()
-    
-    # Pedimos dos funciones
+
     f1 = input("Ingrese la primera función (ejemplo: 2x+1): ")
     f2 = input("Ingrese la segunda función (ejemplo: -x+3): ")
     
