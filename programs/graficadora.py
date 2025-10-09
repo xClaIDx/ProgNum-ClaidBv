@@ -22,7 +22,6 @@ class GraficadoraTexto:
         self.funciones.append((expr_preparada, simbolo))
     
     def graficar(self):
-        print("\nGráfico en Plano Cartesiano \n")
         for y in range(self.ymax, self.ymin - 1, -1):
             linea = ""
             for x in range(self.xmin, self.xmax + 1):
