@@ -4,72 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actividad 2 - Graficadora de Funciones</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f0f1e, #1a1a2e);
-      color: white;
-      padding: 40px;
-      line-height: 1.6;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #8b5cf6;
-    }
-    p {
-      color: #94a3b8;
-      margin-bottom: 20px;
-    }
-    pre {
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      overflow-x: auto;
-    }
-    code {
-      color: #10b981;
-      font-size: 1rem;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-    .btn-pdf {
-      background: linear-gradient(45deg, #06b6d4, #3b82f6);
-      color: white;
-    }
-    .btn-pdf:hover {
-      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
-      transform: translateY(-3px);
-    }
-    .btn-back {
-      background: rgba(255,255,255,0.1);
-      color: #94a3b8;
-      margin-right: 10px;
-    }
-    .btn-back:hover {
-      background: rgba(255,255,255,0.2);
-      color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/actividades.css">
 </head>
 <body>
-  <h1>📈 Actividad 2: Graficadora de Funciones (ASCII)</h1>
-  <p>
-    Este programa, desarrollado en Python, permite graficar funciones lineales en un plano cartesiano utilizando únicamente caracteres de texto en la consola. 
-    El usuario puede ingresar dos funciones (por ejemplo <code>2x+1</code> y <code>-x+3</code>), y el sistema representará sus rectas junto con los ejes cartesianos, 
-    marcando los puntos de intersección. Esta actividad refuerza la comprensión visual de las funciones dentro del curso de Programación Numérica.
-  </p>
+  <div class="container">
+    <h1 class="main-title"> Actividad 2: Graficadora de Funciones (ASCII)</h1>
+    <p class="description">
+      Este programa, desarrollado en Python, permite graficar funciones lineales en un plano cartesiano utilizando únicamente caracteres de texto en la consola. El usuario puede ingresar dos funciones (por ejemplo <code>2x+1</code> y <code>-x+3</code>), y el sistema representará sus rectas junto con los ejes cartesianos, marcando los puntos de intersección. Esta actividad refuerza la comprensión visual de las funciones dentro del curso de Programación Numérica.
+    </p>
 
-  <h2>Código en Python</h2>
-  <pre><code>
-    class GraficadoraTexto:
+    <h2 class="section-title">Código en Python</h2>
+    <pre class="code-block"><code>
+class GraficadoraTexto:
     def __init__(self, xmin=-20, xmax=20, ymin=-10, ymax=10):
         self.xmin = xmin
         self.xmax = xmax
@@ -135,9 +81,12 @@ if __name__ == "__main__":
     graf.agregar_funcion(f2, "@")
     
     graf.graficar()
-  </code></pre>
+    </code></pre>
 
-  <a href="actividad2.pdf" class="btn btn-pdf" target="_blank">📄 Ver PDF</a>
-  <a href="../index.html#actividades" class="btn btn-back">⬅ Volver</a>
+    <div class="button-group">
+      <a href="../pdfs/actividad02.pdf" class="btn btn-primary" target="_blank">📄 Ver PDF</a>
+      <a href="../index.html#actividades" class="btn btn-secondary">⬅ Volver</a>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 4 - Método del Punto Fijo</title>
+  <link rel="stylesheet" href="../css/actividades.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="main-title">Actividad 4: Método del Punto Fijo</h1>
+    <p class="description">
+      [cite_start]Este proyecto implementa el <strong>Método del Punto Fijo</strong>, un procedimiento iterativo para encontrar las raíces de ecuaciones no lineales[cite: 7]. [cite_start]El método se basa en reformular una ecuación <code>f(x)=0</code> a la forma <code>x=g(x)</code> para luego aplicar la fórmula de iteración <code>x<sub>n+1</sub> = g(x<sub>n</sub>)</code> hasta alcanzar una tolerancia deseada[cite: 9, 10, 43, 44]. [cite_start]En este ejemplo, resolvemos el problema de encontrar la tasa de interés mensual <code>r</code> que duplica una inversión en un año, partiendo de la ecuación <code>f(r) = (1+r)<sup>12</sup> - 2 = 0</code>[cite: 110, 111].
+    </p>
+
+    <h2 class="section-title">Implementación en Python</h2>
+    <pre class="code-block"><code>
+# Implementación del Método del Punto Fijo en Python
+
+def punto_fijo(g, r0, tol, max_iter):
+    """
+    Encuentra una raíz por el método de punto fijo.
+    
+    Args:
+        g (function): La función de iteración g(r).
+        r0 (float): La aproximación inicial.
+        tol (float): La tolerancia para el criterio de parada.
+        max_iter (int): El número máximo de iteraciones.
+        
+    Returns:
+        float: La raíz aproximada, o None si no converge.
+    """
+    print(f"{'n':<5}{'r_n':<15}{'r_n+1':<15}{'Error Absoluto':<20}")
+    print("-" * 55)
+    
+    rn = r0
+    for n in range(max_iter):
+        rn_1 = g(rn)
+        error_abs = abs(rn_1 - rn)
+        
+        print(f"{n:<5}{rn:<15.6f}{rn_1:<15.6f}{error_abs:<20.6f}")
+        
+        if error_abs < tol:
+            print("\nConvergencia alcanzada.")
+            return rn_1
+            
+        rn = rn_1
+        
+    print("\nEl método no convergió tras el máximo de iteraciones.")
+    return None
+
+# --- Problema a resolver ---
+# f(r) = (1+r)^12 - 2 = 0
+# Se transforma a r = g(r)
+# g(r) = 2 / (1+r)^11 - 1
+
+g = lambda r: 2 / (1 + r)**11 - 1
+
+# --- Parámetros iniciales ---
+[cite_start]r0 = 0.05  # Estimación inicial del 5% [cite: 131]
+tolerancia = 1e-6
+iteraciones_max = 50
+
+# --- Ejecución del método ---
+raiz = punto_fijo(g, r0, tolerancia, iteraciones_max)
+
+if raiz is not None:
+    print(f"\nLa raíz aproximada es r ≈ {raiz:.6f}")
+    print(f"La tasa de interés mensual requerida es de aproximadamente {raiz*100:.3f}%")
+
+    </code></pre>
+
+    <div class="button-group">
+      <a href="../pdfs/actividad04.pdf" class="btn btn-primary" target="_blank">📄 Ver PDF</a>
+      <a href="../index.html#actividades" class="btn btn-secondary">⬅ Volver</a>
+    </div>
+  </div>
+</body>
+</html>

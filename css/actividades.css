@@ -1,0 +1,112 @@
+
+/* Estilos base */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f0f1e, #1a1a2e);
+    color: #e2e8f0; /* Color de texto más claro y legible */
+    padding: 20px 50px; /* Padding general */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Encabezados y títulos */
+.main-title {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #06b6d4;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(6, 182, 212, 0.3);
+    padding-bottom: 5px;
+}
+
+/* Párrafos y descripciones */
+.description {
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+/* Bloque de código */
+.code-block {
+    background: rgba(15, 15, 30, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.code-block code {
+    color: #10b981;
+    display: block;
+}
+
+/* Botones */
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+    color: white;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: #94a3b8;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+    .main-title {
+        font-size: 2rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .button-group {
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
+}

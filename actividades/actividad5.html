@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 5 - Método de Newton-Raphson</title>
+  <link rel="stylesheet" href="../css/actividades.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="main-title">Actividad 5: Método de Newton-Raphson</h1>
+    <p class="description">
+      [cite_start]Este proyecto presenta una implementación orientada a objetos del <strong>Método de Newton-Raphson</strong>, un eficiente algoritmo para encontrar raíces de funciones de una variable[cite: 155]. [cite_start]El programa, desarrollado en Python, destaca por su capacidad de calcular la derivada de la función de manera automática utilizando la librería <code>SymPy</code>[cite: 157, 159]. [cite_start]Realiza iteraciones hasta que el error es menor que una tolerancia definida y presenta todo el proceso en una tabla detallada, como se muestra en el ejemplo de ejecución para la función <code>f(x) = x³ - 2x² + 2</code>[cite: 157, 249].
+    </p>
+
+    <h2 class="section-title">Implementación en Python (POO)</h2>
+    <pre class="code-block"><code>
+import sympy as sp
+
+class NewtonRaphson:
+    def __init__(self, fx_str, iter_max=100, tol=1e-6):
+        self.x = sp.Symbol('x')
+        self.f_expr = sp.sympify(fx_str)
+        self.df_expr = sp.diff(self.f_expr, self.x)
+        self.f = sp.lambdify(self.x, self.f_expr, 'math')
+        self.df = sp.lambdify(self.x, self.df_expr, 'math')
+        self.iter_max = iter_max
+        self.tol = tol
+        self.iteraciones = []
+
+    def newton(self, x0):
+        # Manejo de derivada cero en el punto inicial
+        delta = 0.1
+        while self.df(x0) == 0:
+            x0 += delta
+        
+        self.iteraciones = []
+        for i in range(1, self.iter_max + 1):
+            f_val = self.f(x0)
+            df_val = self.df(x0)
+
+            if df_val == 0:
+                print(f"Derivada cero en x = {x0}. Interrumpiendo.")
+                break
+            
+            x1 = x0 - f_val / df_val
+            error = abs(x1 - x0)
+            
+            self.iteraciones.append((i, x0, f_val, df_val, x1, error))
+
+            if error < self.tol:
+                break
+            
+            x0 = x1
+        return x0
+
+    def mostrar_tabla(self):
+        print("\nIteración |     x_n    |    f(x_n)   |   f'(x_n)   |   x_(n+1)   |   Error")
+        print("-" * 75)
+        for it in self.iteraciones:
+            print(f"{it[0]:^9d} | {it[1]:10.6f} | {it[2]:11.6f} | {it[3]:11.6f} | {it[4]:11.6f} | {it[5]:10.6e}")
+        
+        if self.iteraciones:
+            print("-" * 75)
+            print(f"\nRaíz aproximada: {self.iteraciones[-1][4]:.8f}")
+            print(f"Número de iteraciones: {len(self.iteraciones)}")
+
+
+# --- Bloque de Ejecución ---
+if __name__ == "__main__":
+    fx_str = input("Ingrese la función f(x): ")
+    x0_input = input("Ingrese el valor inicial x0 (Enter para usar x0=0): ")
+    x0 = float(x0_input) if x0_input.strip() != "" else 0
+
+    nr = NewtonRaphson(fx_str)
+    raiz = nr.newton(x0)
+    nr.mostrar_tabla()
+
+    </code></pre>
+
+    <div class="button-group">
+      <a href="../pdfs/actividad05.pdf" class="btn btn-primary" target="_blank">📄 Ver PDF</a>
+      <a href="../index.html#actividades" class="btn btn-secondary">⬅ Volver</a>
+    </div>
+  </div>
+</body>
+</html>

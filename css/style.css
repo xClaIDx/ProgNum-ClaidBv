@@ -32,8 +32,8 @@ body {
     font-weight: bold;
     background: linear-gradient(45deg, #8b5cf6, #06b6d4);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
@@ -93,8 +93,8 @@ body {
 .subtitle {
     background: linear-gradient(45deg, #8b5cf6, #06b6d4, #10b981);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 4.5rem;
     font-weight: 800;
 }
@@ -278,7 +278,7 @@ body {
     transform: translateY(-3px);
 }
 
-/* Seccion Actividades (Modularizada) */
+/* Seccion Actividades */
 #actividades {
     padding: 100px 50px;
     background: rgba(0,0,0,0.2);
@@ -295,6 +295,7 @@ body {
     margin-bottom: 50px;
     background: linear-gradient(45deg, #8b5cf6, #06b6d4);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
