@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 7 - Métodos Numéricos para Raíces</title>
+  <link rel="stylesheet" href="../css/actividades.css">
+  <style>
+    /* Estilo adicional para mejorar la presentación de los métodos */
+    .ejercicio {
+      margin-bottom: 25px;
+      padding-left: 15px;
+      border-left: 3px solid #8b5cf6; /* Color violeta del tema */
+    }
+    .ejercicio h3 {
+      font-size: 1.2rem;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="main-title">Actividad 7: Métodos Iterativos para Encontrar Raíces</h1>
+    <p class="description">
+        A continuación, se explican de forma sencilla cuatro métodos clave para encontrar las soluciones a ecuaciones del tipo **f(x)=0**. Estos métodos son como diferentes estrategias para "cazar" la respuesta correcta cuando no se puede despejar directamente, algo fundamental en optimización y programación numérica.
+    </p>
+
+    <h2 class="section-title">Métodos Numéricos Explicados</h2>
+
+    <div class="ejercicio">
+      <h3>1. Método de Bisección</h3>
+      <p class="description">
+        Imagina que buscas un tesoro en una línea recta y sabes que está entre el punto A y el punto B. El método de bisección consiste en ir al punto medio exacto. Si el tesoro no está ahí, te dicen en cuál de las dos mitades restantes se encuentra. Repites el proceso una y otra vez, cortando siempre el área de búsqueda por la mitad. Aunque no es el método más rápido, es extremadamente seguro: **siempre encontrarás el tesoro** porque nunca lo dejas fuera de tu área de búsqueda.
+      </p>
+    </div>
+
+    <div class="ejercicio">
+      <h3>2. Método de la Secante</h3>
+      <p class="description">
+        Este método es como lanzar un dardo de forma inteligente. En lugar de ir al punto medio, tomas dos de tus últimos lanzamientos (puntos) y trazas una línea recta entre ellos. Donde esa línea cruza el objetivo, ahí haces tu siguiente lanzamiento. Es más rápido que la bisección porque usa la "tendencia" de tus últimos intentos para predecir un mejor lugar. La desventaja es que **no necesitas saber cálculo (derivadas)**, pero a veces, si tus primeros lanzamientos son malos, podrías alejarte del objetivo en lugar de acercarte.
+      </p>
+    </div>
+
+    <div class="ejercicio">
+      <h3>3. Método de Punto Fijo</h3>
+      <p class="description">
+        Este método transforma el problema original **f(x)=0** en uno nuevo con la forma **x=g(x)**. Piensa en ello como un juego de "sígueme". Empiezas en un punto inicial, aplicas la regla **g(x)** para saltar a un nuevo punto, y repites el proceso desde ahí. Si eliges bien la regla, cada salto te acercará más y más a un "punto fijo", un lugar donde si aplicas la regla, ya no te mueves. Ese punto estable es la solución que buscabas. La clave es encontrar una buena transformación **g(x)** para que el proceso no se descontrole.
+      </p>
+    </div>
+
+    <div class="ejercicio">
+      <h3>4. Método de Regula Falsi (Falsa Posición)</h3>
+      <p class="description">
+        Este es un método híbrido, lo mejor de dos mundos. Es tan **seguro como la bisección** (siempre mantiene el tesoro atrapado entre dos puntos) pero es **más inteligente en sus conjeturas, como la secante**. En lugar de cortar el intervalo por la mitad, traza una línea recta entre los dos puntos extremos (como la secante) para decidir dónde buscar después. Esto generalmente lo hace más rápido que la bisección, pero a veces puede volverse lento si uno de los puntos extremos se queda "atascado" y no se mueve.
+      </p>
+    </div>
+
+    <div class="button-group">
+      <a href="../pdfs/actividad07.pdf" class="btn btn-primary" target="_blank">📄 Ver PDF</a>
+      <a href="git" class="btn btn-github" target="_blank">💻 Ver en GitHub</a>
+      <a href="../index.html#actividades" class="btn btn-secondary">⬅ Volver</a>
+    </div>
+  </div>
+</body>
+</html>

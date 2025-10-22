@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graficador de Funciones con Ejes Cartesianos</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.1/math.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #0f0f1e;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #8b5cf6;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #2a2a3e;
+            color: #e2e8f0;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        #error-message {
+            color: #ef4444;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="text-align: center;">Graficador de Funciones</h1>
+        
+        <label for="funcion">Función f(x):</label>
+        <input type="text" id="funcion" value="x^3 - 2*x - 5">
+
+        <label for="xmin">Valor Mínimo de x:</label>
+        <input type="number" id="xmin" value="-10">
+
+        <label for="xmax">Valor Máximo de x:</label>
+        <input type="number" id="xmax" value="10">
+        
+        <button onclick="graficar()">Graficar Función</button>
+        <p id="error-message"></p>
+        
+        <canvas id="myChart" style="margin-top: 20px;"></canvas>
+    </div>
+
+    <script>
+        let myChart = null;
+        const errorMessage = document.getElementById('error-message');
+
+        function graficar() {
+            errorMessage.textContent = '';
+            
+            const funcionStr = document.getElementById('funcion').value;
+            const xmin = parseFloat(document.getElementById('xmin').value);
+            const xmax = parseFloat(document.getElementById('xmax').value);
+
+            if (!funcionStr) {
+                errorMessage.textContent = "Por favor, ingresa una función.";
+                return;
+            }
+
+            let f;
+            try {
+                const cleanFuncStr = funcionStr.replace(/\*\*/g, '^');
+                const node = math.parse(cleanFuncStr);
+                const code = node.compile();
+                f = x => code.evaluate({ x: x });
+            } catch (error) {
+                errorMessage.textContent = `Error en la función: ${error.message}`;
+                return;
+            }
+
+            const xValues = [];
+            const yValues = [];
+            const step = (xmax - xmin) / 400;
+
+            for (let x = xmin; x <= xmax; x += step) {
+                xValues.push(x); // Usamos el valor numérico para mayor precisión en el gráfico
+                try {
+                    yValues.push(f(x));
+                } catch {
+                    yValues.push(null);
+                }
+            }
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: `f(x) = ${funcionStr}`,
+                        data: yValues,
+                        borderColor: '#06b6d4',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        x: {
+                            type: 'linear', // Usar escala lineal para que el eje se dibuje correctamente
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: '#94a3b8' }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0' } },
+                        // --- ESTA ES LA PARTE NUEVA ---
+                        // Configuración para dibujar los ejes cartesianos
+                        annotation: {
+                            annotations: {
+                                // Eje X (línea horizontal en y=0)
+                                xAxis: {
+                                    type: 'line',
+                                    yMin: 0,
+                                    yMax: 0,
+                                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                                    borderWidth: 1.5
+                                },
+                                // Eje Y (línea vertical en x=0)
+                                yAxis: {
+                                    type: 'line',
+                                    xMin: 0,
+                                    xMax: 0,
+                                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                                    borderWidth: 1.5
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        window.onload = graficar;
+    </script>
+</body>
+</html>

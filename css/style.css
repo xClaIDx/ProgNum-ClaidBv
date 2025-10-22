@@ -200,7 +200,7 @@ body {
 .element {
     position: absolute;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);    
     animation: float 6s ease-in-out infinite;
 }
 
@@ -446,4 +446,53 @@ body {
     .social-links {
         left: 20px; /* Ajusta la posición para móviles */
     }
+}
+
+/* --- AÑADIR AL FINAL DE style.css --- */
+
+/* Estilos para las nuevas Unidades */
+.actividades-unidad {
+    margin-bottom: 60px; /* Espacio entre unidades */
+}
+
+.unidad-title {
+    font-size: 2.2rem;
+    color: #1aefac;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    border-left: 4px solid #8b5cf6; /* Línea decorativa violeta */
+}
+
+/* Contenedor para el scroll horizontal */
+.scroll-container {
+    display: flex;
+    overflow-x: auto; /* La magia del scroll horizontal */
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #8b5cf6 rgba(0,0,0,0.2);
+}
+
+/* Scrollbar personalizado para Chrome/Safari */
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+.scroll-container::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #8b5cf6;
+    border-radius: 10px;
+}
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: #a855f7;
+}
+
+/* Modificación a la grilla de actividades */
+.actividades-grid {
+    display: grid;
+    grid-auto-flow: column; /* Coloca los elementos en una sola fila */
+    grid-auto-columns: minmax(300px, 1fr); /* Mantiene el ancho de las tarjetas */
+    gap: 30px;
+    width: max-content; /* Permite que la grilla se expanda */
 }

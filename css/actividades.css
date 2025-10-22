@@ -1,4 +1,3 @@
-
 /* Estilos base */
 body {
     font-family: 'Arial', sans-serif;
@@ -18,6 +17,7 @@ body {
     font-size: 2.5rem;
     background: linear-gradient(45deg, #8b5cf6, #06b6d4);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 20px;
     font-weight: 700;
@@ -109,4 +109,127 @@ body {
     .btn {
         width: 100%;
     }
+}
+
+/* ----------------------------------------------- */
+/* --- ESTILOS AÑADIDOS PARA ACTIVIDAD 6 --- */
+/* ----------------------------------------------- */
+
+.info-section {
+    background: rgba(15, 15, 30, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.info-section h3 {
+    color: #06b6d4;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.info-section p, .info-section ol {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.info-section ol {
+    list-style-position: inside;
+    padding-left: 20px;
+}
+
+.info-section ol li {
+    margin-bottom: 8px;
+}
+
+.profile-template {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px dashed #06b6d4;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.profile-template .photo-placeholder {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #94a3b8;
+    overflow: hidden; /* Para que la imagen cargada no se desborde */
+}
+
+.profile-template .photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-template p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px; /* Espacio entre tablas y antes de los botones */
+    background: rgba(15, 15, 30, 0.7);
+    border-radius: 8px;
+    overflow: hidden; /* Asegura bordes redondeados para el contenido */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+th {
+    background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(26, 26, 46, 0.7); /* Ligeramente más oscuro para filas pares */
+}
+
+tr:hover {
+    background-color: rgba(139, 92, 246, 0.15); /* Efecto hover en filas */
+}
+
+/* --- AÑADE ESTO AL FINAL DE TU ARCHIVO actividades.css --- */
+
+.contenedor-centrado {
+    text-align: center;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    padding: 20px 0; /* Espacio opcional arriba y abajo */
+  }
+
+  /* Estilo para el botón de GitHub */
+.btn-github {
+    background-color: #24292e; /* Color oscuro de GitHub */
+    color: white;
+    border: 1px solid #555;
+}
+
+.btn-github:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
